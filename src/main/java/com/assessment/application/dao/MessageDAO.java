@@ -1,6 +1,7 @@
 package com.assessment.application.dao;
 
-import com.assessment.application.bean.Message;
+import com.assessment.application.bean.UnstructuredMessage;
+import com.assessment.application.bean.StructuredMessage;
 import com.assessment.application.bean.UserDetails;
 import com.opencsv.CSVReader;
 import org.springframework.stereotype.Component;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -16,8 +18,7 @@ import java.util.List;
 @Component
 public class MessageDAO {
 
-    public static List<Message> messageList = new ArrayList<Message>(); // Global Variable
-
+    public static List<StructuredMessage> structuredMessageList = new ArrayList<StructuredMessage>(); // Global Variable
 
     /**
      * Reads User Details from CSV file
@@ -44,16 +45,28 @@ public class MessageDAO {
      */
     @PostConstruct
     public void messagesCSV() throws Exception {
+        List<UnstructuredMessage> unstructuredMessages = new ArrayList<UnstructuredMessage>();
         CSVReader csvReader = new CSVReader(new FileReader("dataFolder\\sample.csv")); // File Path to read Messages
         String[] nextline;
         while ((nextline=csvReader.readNext())!=null) {
-            Message messageObj = new Message();
+            UnstructuredMessage messageObj = new UnstructuredMessage();
             if (nextline.length>=2) {
                 messageObj.setMessageId(nextline[0]);
                 messageObj.setMessageContent(nextline[1]);
-                messageList.add(messageObj);
+                unstructuredMessages.add(messageObj);
             }
         }
-        messageList.remove(0);
+        unstructuredMessages.remove(0);
+
+        for (UnstructuredMessage me:
+                unstructuredMessages) {
+            List<String> messagesList = new ArrayList<String>(Arrays.asList(me.getMessageContent().split("\\r?\\n", -1)));
+            messagesList.removeAll(Arrays.asList("", null));
+
+            StructuredMessage messages = new StructuredMessage(messagesList);
+            messages.setId(me.getMessageId());
+
+            structuredMessageList.add(messages);
+        }
     }
 }

@@ -1,6 +1,6 @@
 package com.assessment.application.service;
 
-import com.assessment.application.bean.Message;
+import com.assessment.application.bean.StructuredMessage;
 import com.assessment.application.bean.UserDetails;
 import com.assessment.application.dao.MessageDAO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +33,7 @@ public class MessageService {
     /**
      * Service for Fetching Messages
      */
-    public List<Message> messages() throws Exception {
-        return MessageDAO.messageList;
+    public List<StructuredMessage> messages() throws Exception {
+        return MessageDAO.structuredMessageList;
     }
 }

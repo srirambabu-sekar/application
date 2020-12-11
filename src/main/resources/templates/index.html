@@ -37,17 +37,49 @@
             <label>Filter:</label>
             <input type="text" ng-model="$parent.searchKeyword" placeholder="Enter Filter keyword..." name="search">
         </div>
-        <table class="col-md-4 table table-bordered">
-            <tr>
-                <th><label>Message ID</label></th>
-                <th><label>Message Content</label></th>
-            </tr>
-            <tr ng-if="!noData" ng-repeat="message in messages | filter:searchKeyword">
-                <td>{{message.messageId}}</td>
-                <td>{{message.messageContent}}</td>
-            </tr>
-            <tr ng-if="noData"><td colspan="2" style="text-align: center;">There is No Data to Display</td></tr>
-        </table>
+        <div class="col-md-12" style="overflow-x:auto;overflow-y: scroll;height: 400px;">
+            <table class="table table table-bordered">
+                <tr>
+                    <th><label>ID</label></th>
+                    <th><label>Message ID</label></th>
+                    <th><label>DATE</label></th>
+                    <th><label>FROM</label></th>
+                    <th><label>TO</label></th>
+                    <th><label>SUBJECT</label></th>
+                    <th><label>MIME VERSION</label></th>
+                    <th><label>CONTENT TYPE</label></th>
+                    <th><label>CONTENT TRANSFER ENCODING</label></th>
+                    <th><label>x-FROM</label></th>
+                    <th><label>x-TO</label></th>
+                    <th><label>x-CC</label></th>
+                    <th><label>x-BCC</label></th>
+                    <th><label>x-FOLDER</label></th>
+                    <th><label>x-ORIGIN</label></th>
+                    <th><label>x-FILE NAME</label></th>
+                    <th><label>CONTEXT</label></th>
+                </tr>
+                <tr ng-if="!noData" ng-repeat="message in messages | filter:searchKeyword">
+                    <td>{{message.id}}</td>
+                    <td class="wide">{{message.messageId}}</td>
+                    <td>{{message.date}}</td>
+                    <td>{{message.from}}</td>
+                    <td>{{message.to}}</td>
+                    <td>{{message.subject}}</td>
+                    <td>{{message.mimeVersion}}</td>
+                    <td>{{message.contentType}}</td>
+                    <td>{{message.contentTransferEncoding}}</td>
+                    <td>{{message.xFrom}}</td>
+                    <td>{{message.xTo}}</td>
+                    <td>{{message.xCC}}</td>
+                    <td>{{message.xBcc}}</td>
+                    <td>{{message.xFolder}}</td>
+                    <td>{{message.xOrigin}}</td>
+                    <td>{{message.xFileName}}</td>
+                    <td>{{message.context}}</td>
+                </tr>
+                <tr ng-if="noData"><td colspan="17" style="text-align: center;">There is No Data to Display</td></tr>
+            </table>
+        </div>
     </div>
 </body>
 </html>

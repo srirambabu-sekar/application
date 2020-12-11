@@ -1,6 +1,6 @@
 package com.assessment.application.controller;
 
-import com.assessment.application.bean.Message;
+import com.assessment.application.bean.StructuredMessage;
 import com.assessment.application.bean.UserDetails;
 import com.assessment.application.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +38,7 @@ public class MessageController {
      * Making Service Call for Fetching Message Details
      */
     @RequestMapping(value = "/fetch", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Message> messages() throws Exception {
+    public List<StructuredMessage> messages() throws Exception {
         return messageService.messages();
     }
 }

@@ -22,7 +22,7 @@ app.controller("MessagesController", function($scope, $http) {
                 $scope.validLogin = res.data;
                 if (res.data==true) {
                     $scope.customerForm = [];
-                    _refreshEmployeeData();
+                    getMessages();
                 }
             },
             function(res) { // on error
@@ -34,7 +34,7 @@ app.controller("MessagesController", function($scope, $http) {
     // Private Method 
     // HTTP GET- Fetching Messages
     // Call: http://localhost:8080/message/fetch
-    function _refreshEmployeeData() {
+    function getMessages() {
         $http({
             method: 'GET',
             url: '/message/fetch'

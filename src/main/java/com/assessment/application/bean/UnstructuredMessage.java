@@ -3,7 +3,7 @@ package com.assessment.application.bean;
 /**
  * @author srirambabu.sekar on 11-12-2020.
  */
-public class Message {
+public class UnstructuredMessage {
     private String messageId;
     private String messageContent;
 
