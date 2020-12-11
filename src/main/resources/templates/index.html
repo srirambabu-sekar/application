@@ -32,8 +32,8 @@
             </table>
         </div>
     </form>
-    <div class="col-md-12">
-        <div class="col-md-3 search" ng-if="validLogin">
+    <div class="col-md-12" ng-if="validLogin">
+        <div class="col-md-3 search">
             <label>Filter:</label>
             <input type="text" ng-model="$parent.searchKeyword" placeholder="Enter Filter keyword..." name="search">
         </div>
